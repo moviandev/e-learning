@@ -6,10 +6,12 @@ import {
   Body,
   Delete,
   Post,
+  ParseIntPipe,
 } from '@nestjs/common';
 
 import { Course } from '../../../../shared/course';
 import { CourseRepository } from '../repositories/courses.repository';
+import { ToIntegerPipe } from '../pipes/to-integer.pipe';
 
 @Controller('courses')
 export class CoursesControllers {
@@ -29,7 +31,7 @@ export class CoursesControllers {
   @Put(':idCourse')
   async updateCourse(
     @Param('idCourse') id: string,
-    @Body() changes: Partial<Course>,
+    @Body() changes: Course,
   ): Promise<Course> {
     console.log('Updating course');
     return this.courseDB.updateCourse(id, changes);
