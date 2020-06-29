@@ -27,7 +27,7 @@ import { ValidationException } from './filters/validation.exception';
       useFactory: (errors: ValidationError[]) => {
         const messages = errors.map(
           error => `${error.property} has wrong value ${error.value},
-          ${Object.values(error.constraints).join(', ')}`,
+          ${Object.values(error.constraints).join(',')}`,
         );
 
         return new ValidationException(messages);
